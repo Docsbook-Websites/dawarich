@@ -31,7 +31,7 @@ Dawarich is a privacy-first alternative to Google Timeline. Import a decade of l
 
 - [Features](./features/overview.md) — Map, visits, trips, insights, statistics and photos {map}
 - [Comparisons](./comparisons/overview.md) — How Dawarich stacks up against nine alternatives {scale}
-- [API reference](./api-reference.md) — Try the REST API from your browser {terminal}
+- [API reference](./rest-api.md) — Try the REST API from your browser {terminal}
 - [Community questions](./community-questions.md) — Recent discussions, answered from these pages {message-circle-question}
 - [FAQ](./faq.md) — Short answers to the questions that come up most {circle-help}
 

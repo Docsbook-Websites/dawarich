@@ -43,4 +43,4 @@ Everything below works the same on a self-hosted instance and in the cloud.
 ## Related
 
 - [Getting started](../getting-started/overview.md)
-- [API reference](../api-reference.md)
+- [API reference](../rest-api.md)

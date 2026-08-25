@@ -77,7 +77,7 @@ Two options, both using things that already exist.
 | Write to the cloud account | `POST /api/v1/points` | Accepts a batch of points |
 | Check as you go | `GET /api/v1/stats` | Aggregated totals for the authenticated user |
 
-Both instances validate uniqueness on coordinates and timestamp, so a batch that gets sent twice after a network error does not double anything. See the [API reference](../api-reference.md).
+Both instances validate uniqueness on coordinates and timestamp, so a batch that gets sent twice after a network error does not double anything. See the [API reference](../rest-api.md).
 
 ## What you are actually buying
 

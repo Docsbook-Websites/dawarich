@@ -67,7 +67,7 @@ Swap the database image in `docker-compose.yml` and the pull succeeds.
 
 **Answered, and the answer is no.** [Discussion #2968](https://github.com/Freika/dawarich/discussions/2968), asked 19 June. The asker wants the numbers from the admin Users screen for a homepage dashboard.
 
-The published API has no admin or all-users endpoint. What exists is scoped to the authenticated user: `GET /api/v1/stats` returns that user's aggregated totals, and `GET /api/v1/users/me` returns that user's own record. `GET /api/v1/users/exist` only checks whether given user IDs exist. See the [API reference](./api-reference.md).
+The published API has no admin or all-users endpoint. What exists is scoped to the authenticated user: `GET /api/v1/stats` returns that user's aggregated totals, and `GET /api/v1/users/me` returns that user's own record. `GET /api/v1/users/exist` only checks whether given user IDs exist. See the [API reference](./rest-api.md).
 
 For an instance-wide dashboard today, the numbers have to come from the database rather than the API.
 
