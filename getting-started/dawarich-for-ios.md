@@ -1,0 +1,35 @@
+---
+title: "Dawarich for iOS"
+description: "Install and set up the Dawarich iOS app for location tracking on iPhone and iPad."
+---
+
+# Dawarich for iOS
+
+Dawarich is available on iOS. You can download it from the App Store.
+
+## Installation
+
+1. Open the App Store.
+2. Search for "Dawarich".
+3. Tap "Install" and follow the instructions to install the app.
+
+
+<a href="https://apps.apple.com/app/apple-store/id6739544999?pt=128010810&ct=landing-navbar&mt=8">
+  <img src="https://dawarich.app/img/dawarich-release-announcement.png" alt="Download on the App Store" />
+</a>
+
+## Usage
+
+1. Open the app.
+2. Open Settings
+3. Provide your Dawarich instance URL
+4. Provide your Dawarich API key
+5. Tap "Test connection". You should see a message that the connection is successful.
+6. Open Map page.
+7. Tap "Start tracking".
+8. Move around and see your location on the map.
+9. To upload your location to Dawarich, tap "Stop tracking" and then "Upload points".
+
+## Offline tracking
+
+The app records your location on your device, so tracking keeps working even without an internet connection — on a plane, underground, hiking off-grid, or travelling abroad without data. Your points are stored safely on the iPhone and uploaded to your Dawarich instance automatically once you're back online. Nothing is lost to a dropped connection.

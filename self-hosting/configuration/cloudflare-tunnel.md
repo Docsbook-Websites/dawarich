@@ -1,0 +1,90 @@
+---
+title: "Exposing via CloudFlare Tunnel"
+description: "Expose your self-hosted Dawarich instance to the internet using CloudFlare Zero Trust Tunnels without opening firewall ports."
+---
+
+# Exposing your instance via CloudFlare Tunnel
+
+With a couple of edits to the docker-compose.yml file, we can expose Dawarich to the internet utilizing CloudFlare and their Zero Trust Tunnel service. This will not require any firewall configuration nor ports being opened at the firewall level.
+
+This guide will assume you already have a public domain, and are using CloudFlare DNS nameservers.
+
+Login to CloudFlare, and navigate to "Zero Trust" on the left hand menu. https://one.dash.cloudflare.com/
+
+Click on Networks, and then the submenu "Tunnels".
+Create your tunnel.
+
+![Creating a tunnel](https://raw.githubusercontent.com/dawarich-app/site/main/docs/self-hosting/configuration/images/creating-cloudflare-tunnel.png)
+
+Select cloudflared for the tunnel type on the next page.
+
+Give your tunnel a name, and click "save tunnel".
+
+On the next page - we are provided with the token needed to run our connector. Click on the copy button to copy this to your clipboard.
+
+![Copying Cloudflare token](https://raw.githubusercontent.com/dawarich-app/site/main/docs/self-hosting/configuration/images/copying-cloudflare-token.png)
+
+Paste this into a text editor to clean this up. We can remove the install commands, we don't need them. We just want the tunnel token. We will come back to the token in just a moment. Let's finish CloudFlare's configuration.
+
+Click on the Public Hostname tab, and click "add a public hostname"
+You can use any subdomain you'd like. Make sure to configure the IP address and port Dawarich is running on.
+
+![Adding hostname](https://raw.githubusercontent.com/dawarich-app/site/main/docs/self-hosting/configuration/images/adding-hostname.png)
+
+Click on "additional application settings" -> and set a custom HTTP host header. 
+
+Paste this into that box:
+
+```
+content_type text/css text/plain text/xml text/x-component text/javascript application/x-javascript application/javascript application/json application/manifest+json application/vnd.api+json application/xml application/xhtml+xml application/rss+xml application/atom+xml application/vnd.ms-fontobject application/x-font-ttf application/x-font-opentype application/x-font-truetype image/svg+xml image/x-icon image/vnd.microsoft.icon font/ttf font/eot font/otf font/opentype
+```
+Finally, click save hostname
+
+We are going to store the CloudFlare tunnel token in an .env file.
+
+Create a tunnel.env file, and use the following format:
+
+```
+TUNNEL_TOKEN=CLOUDFLARE_TUNNEL_TOKEN
+```
+
+![Setting token](https://raw.githubusercontent.com/dawarich-app/site/main/docs/self-hosting/configuration/images/setting-cloudflare-token.png)
+
+Now - we are ready to modify our docker-compose file.
+
+In both the `dawarich_app` and `dawarich_sidekiq` service definitions, find the `APPLICATION_HOSTS` environment variable and set it to include your CloudFlare tunnel subdomain:
+
+```
+      APPLICATION_HOSTS: subdomain.your.tld
+```
+
+Replace `subdomain.your.tld` with the actual subdomain you configured in CloudFlare (e.g. `dawarich.example.com`).
+
+
+Add the following towards the end of the dockerfile, right above where the volumes are defined:
+
+```
+  tunnel:
+   image: cloudflare/cloudflared:latest
+   command: tunnel --no-autoupdate run
+   networks:
+    - dawarich
+   env_file: tunnel.env
+   restart: always
+   container_name: tunnel
+   depends_on:
+    - dawarich_app
+```
+
+
+Finally - execute a
+
+```
+docker compose up -d
+```
+
+Your instance should now be accessible via your public host name.
+
+You can connect applications on mobile devices to utilize the API while away from home for better tracking. Tested on Android using OwnTracks.
+
+_The original guide is written by [@mattmichaels](https://github.com/mattmichaels) and can be found [here](https://github.com/dawarich-app/site/pull/4/files)._
