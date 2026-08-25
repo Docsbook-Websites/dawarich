@@ -67,7 +67,7 @@ Swap the database image in `docker-compose.yml` and the pull succeeds.
 
 **Answered, and the answer is no.** [Discussion #2968](https://github.com/Freika/dawarich/discussions/2968), asked 19 June. The asker wants the numbers from the admin Users screen for a homepage dashboard.
 
-The published API has no admin or all-users endpoint. What exists is scoped to the authenticated user: `GET /api/v1/stats` returns that user's aggregated totals, and `GET /api/v1/users/me` returns that user's own record. `GET /api/v1/users/exist` only checks whether given user IDs exist. See the [API reference](./api-reference.md).
+The published API has no admin or all-users endpoint. What exists is scoped to the authenticated user: `GET /api/v1/stats` returns that user's aggregated totals, and `GET /api/v1/users/me` returns that user's own record. `GET /api/v1/users/exist` only checks whether given user IDs exist. See the project's [OpenAPI specification](https://github.com/Freika/dawarich/blob/master/swagger/v1/swagger.yaml).
 
 For an instance-wide dashboard today, the numbers have to come from the database rather than the API.
 
@@ -98,7 +98,7 @@ Two things are genuinely absent: any recommended value for a short-commute case,
 | Stuck trip (#3275) | Not covered |
 | iOS point frequency (#3160) | Drawing answered, app behaviour undocumented |
 | ARM64 / Orange Pi 5 (#3158) | Answered by existing pages |
-| Admin API (#2968) | Answered by the API reference |
+| Admin API (#2968) | Answered by the OpenAPI spec |
 | Visit detection tuning (#2960) | Settings answered, guidance missing |
 
 Four answered, two partly, one not at all. The four were answerable the day they were asked.
